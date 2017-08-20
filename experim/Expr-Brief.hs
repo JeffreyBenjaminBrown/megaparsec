@@ -1,3 +1,5 @@
+-- a copy of Text.Megaparsec.Expr without comments, for easier study
+
 module Text.Megaparsec.Expr
 -- jbb edit
 --  ( Operator (..)
