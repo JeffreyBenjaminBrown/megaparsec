@@ -1,3 +1,5 @@
+-- Shows that higher-precedence prefix and postfix ops must be closer to the term they modify
+
 import Data.Void
 import Text.Megaparsec
 import Text.Megaparsec.Expr
@@ -6,11 +8,10 @@ import qualified Text.Megaparsec.Char.Lexer as L
 
 type Parser = Parsec Void String
 
--- == Higher-precedence prefix and postfix ops must be closer to the term they modify
-aOperators :: [[Operator Parser Float]]
+unaryOps :: [[Operator Parser Float]]
   -- each [Op] is a list of ops of equal precedence
   -- ops in the first list bind first
-aOperators =
+unaryOps =
   [ [ Prefix $ C.string "a" *> pure (*1)
     , Prefix $ C.string "b" *> pure (+2)
     , Postfix $ C.string "w" *> pure (/3)
@@ -22,7 +23,7 @@ aOperators =
   ] ]
 
 unaryExpr :: Parser Float
-unaryExpr = makeExprParser L.float aOperators
+unaryExpr = makeExprParser L.float unaryOps
 
 testUnaryExpr :: IO ()
 testUnaryExpr = mapM_ (putStrLn . show)
