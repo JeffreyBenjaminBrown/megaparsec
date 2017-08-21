@@ -9,8 +9,11 @@ import qualified Text.Megaparsec.Char.Lexer as L
 
 type Parser = Parsec Void String
 
+test :: IO ()
 test = mapM_ (putStrLn . show) $ map (parseMaybe theExprParser)
-  ["3 + 2"
+  [""
+  , "3"
+  , "3 + 2"
   , "3 * 2"
   , "3 * 2 + 4"
   , "3 + 2 * 4"
@@ -25,12 +28,13 @@ plus = const (+) <$> (lexeme $ C.string "+")
 times :: Num a => Parser (a -> a -> a)
 times = const (*) <$> (lexeme $ C.string "*")
 
--- functions modified from Text.Megaparsec.Expr
+-- modified from Text.Megaparsec.Expr
 addPrecLevel :: MonadParsec e s m => m a -> [m (a -> a -> a)] -> m a
 addPrecLevel term leftAssocOps =
   term >>= \x -> choice [leftAssocOps' x, return x] <?> "operator"
   where leftAssocOps'  = pInfixL (choice leftAssocOps) term
 
+-- unchanged from Text.Megaparsec.Expr
 pInfixL :: MonadParsec e s m => m (a -> a -> a) -> m a -> a -> m a
 pInfixL op p x = do
   f <- op
