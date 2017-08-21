@@ -1,5 +1,5 @@
--- | Handles optional bracketing terms. (In the Hash language[1],
--- the same # operator can be used as infix, prefix or postfix.)
+-- | Handles optional bracketing terms. (I need this for the Hash language[1],
+-- in which the # operator can be used as infix, prefix or postfix.)
 -- [1] https://github.com/JeffreyBenjaminBrown/digraphs-with-text/tree/master/Hash
 
 module Dwt.Parse where

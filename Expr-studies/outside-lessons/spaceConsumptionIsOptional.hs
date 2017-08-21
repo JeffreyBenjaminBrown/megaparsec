@@ -1,5 +1,6 @@
--- | Lexemes can abut without intervening space. (This surprised me,
--- because @`lexeme` is defined by a space consumer.)
+-- | Lexemes can abut without intervening space. This surprised me
+-- because @`lexeme` is defined by a space consumer. It holds in
+-- Text.Megaparsec generally, not just Text.Megaparsec.Expr.
 
 module Dwt.Parse where
 
