@@ -1,4 +1,4 @@
--- | Demonstrates how a level of left-infix operators
+-- | Demonstrates how a level of right-infix operators
 -- is parsed in Text.Megaparsec.Expr.
 -- right-infix.hs and left-infix.hs differ only in the functions
 -- pInfixR and pInfixL, which use different recursion strategies.
@@ -32,18 +32,17 @@ times = const (*) <$> (lexeme $ C.string "*")
 
 -- simplified from Text.Megaparsec.Expr
 addPrecLevel :: MonadParsec e s m => m a -> [m (a -> a -> a)] -> m a
-addPrecLevel term leftAssocOps =
-  term >>= \x -> choice [leftAssocOps' x, return x] <?> "operator"
-  where leftAssocOps'  = pInfixL (choice leftAssocOps) term
+addPrecLevel term rightAssocOps =
+  term >>= \x -> choice [rightAssocOps' x, return x] <?> "operator"
+  where rightAssocOps'  = pInfixR (choice rightAssocOps) term
 
 -- unchanged from Text.Megaparsec.Expr
-pInfixL :: MonadParsec e s m => m (a -> a -> a) -> m a -> a -> m a
-pInfixL op p x = do -- p = some general expr parser
+pInfixR :: MonadParsec e s m => m (a -> a -> a) -> m a -> a -> m a
+pInfixR op p x = do -- p = some general expr parser
                     -- x = what's already parsed
   f <- op
-  y <- p
-  let r = f x y
-  pInfixL op p r <|> return r
+  y <- p >>= \r -> pInfixR op p r <|> return r
+  return $ f x y
 
 -- little things
 sc :: Parser ()
