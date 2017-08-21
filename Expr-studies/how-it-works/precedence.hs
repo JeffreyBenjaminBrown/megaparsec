@@ -1,4 +1,4 @@
--- | Demonstrates how layers of operator precedence are accreted
+-- | Demonstrates how layers of operator precedence are accumulated
 -- in Text.Megaparsec.Expr
 
 import Text.Megaparsec

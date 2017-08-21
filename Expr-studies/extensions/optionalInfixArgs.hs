@@ -1,4 +1,6 @@
--- | A scheme for handling optional arguments to an infix operator.
+-- | Handles optional bracketing terms. (In the Hash language[1],
+-- the same # operator can be used as infix, prefix or postfix.)
+-- [1] https://github.com/JeffreyBenjaminBrown/digraphs-with-text/tree/master/Hash
 
 module Dwt.Parse where
 
@@ -22,5 +24,8 @@ p = do
   return $ x ++ y ++ z
 
 demo :: IO ()
-demo = mapM_ (putStrLn . show)
-  $ map (parseMaybe p) ["s 1 t", "s 1", "1 t"]
+demo = mapM_ (putStrLn . show) $ map (parseMaybe p)
+  [ "s 1 t"
+  , "s 1"
+  , "1 t"
+  ]

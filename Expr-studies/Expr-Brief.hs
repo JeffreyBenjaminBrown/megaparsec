@@ -1,7 +1,7 @@
--- a copy of Text.Megaparsec.Expr without comments, for easier study
+-- | A copy of Text.Megaparsec.Expr without comments, and with nothing
+-- hidden from export, for easier study.
 
 module Text.Megaparsec.Expr
--- jbb edit
 --  ( Operator (..)
 --  , makeExprParser )
 where
