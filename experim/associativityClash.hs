@@ -1,5 +1,6 @@
--- Shows that operators of equal precedence with different
+-- | Shows that operators of equal precedence with different
 -- associativities cannot (in serial, without parentheses) be mixed
+-- in Text.Megaparsec.Expr.
 
 import Control.Applicative (empty)
 import Data.Void

@@ -1,4 +1,5 @@
--- Shows that all prefix and postfix ops bind before any binary ops, regardless of precedence
+-- | Shows that all prefix and postfix ops bind before any binary ops,
+-- regardless of precedence, in Text.Megaparsec.Expr.
 
 import Control.Applicative (empty)
 import Data.Void

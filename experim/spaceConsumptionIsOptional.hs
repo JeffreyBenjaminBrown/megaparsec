@@ -1,3 +1,6 @@
+-- | Lexemes can abut without intervening space. (This surprised me,
+-- because @`lexeme` is defined by a space consumer.
+
 module Dwt.Parse where
 
 import Control.Applicative (empty)

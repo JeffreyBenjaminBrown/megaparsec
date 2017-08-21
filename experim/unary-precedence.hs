@@ -1,4 +1,5 @@
--- Shows that higher-precedence prefix and postfix ops must be closer to the term they modify
+-- | Shows that higher-precedence prefix and postfix ops
+-- must be closer to the term they modify.
 
 import Data.Void
 import Text.Megaparsec

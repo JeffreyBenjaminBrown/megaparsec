@@ -1,3 +1,5 @@
+-- | A scheme for handling optional arguments to an infix operator.
+
 module Dwt.Parse where
 
 import Control.Applicative (empty)
