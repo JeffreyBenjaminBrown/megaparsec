@@ -12,8 +12,12 @@ import qualified Text.Megaparsec.Char.Lexer as L
 
 type Parser = Parsec Void String
 
-sc :: Parser ()
-sc = L.space C.space1 empty empty
+test :: IO ()
+test = mapM_ (putStrLn . show) $ map (parseMaybe p)
+  [ "s 1 t"
+  , "s 1"
+  , "1 t"
+  ]
 
 p :: Parser [String]
 p = do
@@ -23,9 +27,5 @@ p = do
   z <- (:[]) <$> option "" (C.string "t") <* sc
   return $ x ++ y ++ z
 
-demo :: IO ()
-demo = mapM_ (putStrLn . show) $ map (parseMaybe p)
-  [ "s 1 t"
-  , "s 1"
-  , "1 t"
-  ]
+sc :: Parser ()
+sc = L.space C.space1 empty empty
